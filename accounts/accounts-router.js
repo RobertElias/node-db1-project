@@ -63,6 +63,26 @@ router.get("/", (req, res) => {
         .json({ message: "please provide title and contents for the post" });
     }
   });
+
+   ////localhost:5000/api/accounts/14
+   router.put("/:id", (req, res) => {
+    // update an account by id
+    const id = req.params.id;
+    const changes = req.body;
+    db("accounts")
+      .where({ id }) // remember to filter or all records will be updated (BAD PANDA!!)
+      .update(changes) // could be partial changes, only one column is enough
+      .then(count => {
+        res.status(200).json({data: count});
+      })
+      .catch(error => {
+        console.log(error);
+  
+        res.status(500).json({ error: "failed to update the account" });
+      });
+  });
+  
+
   
 
   function isValidPost(accounts) {
