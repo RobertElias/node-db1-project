@@ -21,7 +21,9 @@ OR City = 'Brazil'
 INSERT INTO customers (customerName, contactName, customerAddress, city, postalCode, Country)
 VALUES ('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole" in "Bag End', '111', 'Middle Earth' );
 -- Update Bilbo Baggins record so that the postal code changes to "11122"
-
+UPDATE [customers]
+SET postalCode = '11122'
+WHERE customerName = 'Bilbo Baggins'
 -- (Stretch) Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted
 
 -- (Stretch) Find all suppliers who have names longer than 20 characters. You can use `length(SupplierName)` to get the length of the name
