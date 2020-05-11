@@ -22,5 +22,22 @@ router.get("/", (req, res) => {
   });
 
 
+  //localhost:5000/api/accounts/3
+  router.get("/:id", (req, res) => {
+    // an account by id
+    // selct * from accounts where id = :id
+    db("accounts")
+      .where({ id: req.params.id })
+      .first() // grabs first item of the return array
+      .then(account => {
+        res.status(200).json(account);
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(500).json({ error: "failed to get an account" });
+      });
+  });
+
+
 
 module.exports = router;
