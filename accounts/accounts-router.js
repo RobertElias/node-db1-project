@@ -39,5 +39,34 @@ router.get("/", (req, res) => {
   });
 
 
+  //localhost:5000/api/accounts
+  router.post("/", (req, res) => {
+    const post = req.body;
+  
+    // a post must have title and contents
+    if (isValidPost(post)) {
+      // once you know the post is valid then try to save to the db
+      db("accounts")
+        // there will be a warning in the console about .returnnin(), ignore it for SQLite
+        .insert(post, "id", "name", "budget")
+        .then(ids => {
+          res.status(201).json({ data: ids });
+        })
+        .catch(error => {
+          // save the error to a log somewhere
+          console.log(error);
+          res.status(500).json({ message: error.messsage });
+        });
+    } else {
+      res
+        .status(400)
+        .json({ message: "please provide title and contents for the post" });
+    }
+  });
+  
+
+  function isValidPost(accounts) {
+    return Boolean(accounts.name && accounts.budget);
+  }
 
 module.exports = router;
