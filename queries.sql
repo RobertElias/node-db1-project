@@ -13,7 +13,10 @@ WHERE supplierID = '11'
 SELECT * FROM [orders]
 ORDER BY orderDate LIMIT 10
 -- Find all customers that live in London, Madrid, or Brazil
-
+SELECT * FROM [customers]
+WHERE City = 'London ' 
+OR City = 'Madrid' 
+OR City = 'Brazil'
 -- Add a customer record for "The Shire", the contact name is "Bilbo Baggins" the address is -"1 Hobbit-Hole" in "Bag End", postal code "111" and the country is "Middle Earth"
 
 -- Update Bilbo Baggins record so that the postal code changes to "11122"
