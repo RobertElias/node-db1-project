@@ -4,7 +4,7 @@ const db = require('../data/dbConfig.js');
 
 const router = express.Router();
 
-//localhost:4000/api/accounts
+//localhost:5000/api/accounts
 // should initial be empty array no data
 router.get("/", (req, res) => {
     //list of accounts
